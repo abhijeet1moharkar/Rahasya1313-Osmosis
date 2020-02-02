@@ -80,6 +80,29 @@ def find_db(search_text):
     print(d['result'])
     return d
 
+    dic = dict()
+    for i in list_skill:
+        dic[i] = find_db(i)
+    return dic
+
+list_skill = None
+
+
+@app.route('/segregate')
+def distinct_skill():
+    global list_skill
+    client = app.data.driver.db.client
+    db = client['hackit']
+    list_skill = db.resume.distinct( "skills" )
+    list_1 = []
+    for i in list_skill:
+        dic = None
+        dic = find_db(i)
+        list_1.append(dic)
+    print(list_1)    
+    return render_template("segregate.html",l=list_1)
+
+
 
 @app.route('/index')
 def index():
