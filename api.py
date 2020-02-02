@@ -62,7 +62,8 @@ app.config['MONGO_PASSWORD'] = '1313'
 
 UPLOAD_FOLDER = "./static/uploads/"
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
+client = app.data.driver.db.client
+db = client['hackit']
 
 @app.route('/index')
 def index():
@@ -80,11 +81,13 @@ def upload_doc():
         print(file.filename)
         if file:
             print('andar hu')
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            print('.\n'*50, filename)
-            client = app.data.driver.db.client
-
+            # filename = secure_filename(file.filename)
+            file.save(file.filename)
+            # file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            data = ResumeParser(file.filename).get_extracted_data()
+            data["f_loc"] = file.filename 
+            #
+            db.resume.insert_one(data)
             return redirect('/index')
 
 
