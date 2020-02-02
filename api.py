@@ -73,7 +73,8 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 def find_db(search_text):
     client = app.data.driver.db.client
     db = client['hackit']
-    d = db.resume.find({"$text": {"$search": search_text}},{"_id":0,"name":1,"email":1,"f_loc":1})
+    d["search_text"] = search_text
+    d["result"] = db.resume.find({"$text": {"$search": search_text}},{"_id":0,"name":1,"email":1,"f_loc":1})
     return d
 
 
