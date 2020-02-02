@@ -42,8 +42,6 @@ from os import listdir
 from os.path import isfile, join
 import zipfile
 
-
-
 port = 5000
 #host = '142.93.209.128'
 host = "0.0.0.0"
@@ -69,6 +67,14 @@ app.config['MONGO_PASSWORD'] = '1313'
 
 UPLOAD_FOLDER = "./static/uploads/"
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+
+
+def find_db(search_text):
+    client = app.data.driver.db.client
+    db = client['hackit']
+    d = db.resume.find({"$text": {"$search": search_text}},{"_id":0,"name":1,"email":1,"f_loc":1})
+    return d
 
 
 @app.route('/index')
