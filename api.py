@@ -93,7 +93,7 @@ def upload_doc():
             file.save(file.filename)
             # file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             data = ResumeParser(file.filename).get_extracted_data()
-            data["f_loc"] = file.filename 
+            data["f_loc"] = file.filename
             #
             db.resume.insert_one(data)
             return redirect('/index')
@@ -176,7 +176,7 @@ def linkedinsearch():
 
         #userid = str(input("Enter email address or number with country code: "))
         #password = getpass.getpass('Enter your password:')
-        # Initialize the Chrome webdriver and open the URL
+        # Initialize t  he Chrome webdriver and open the URL
         firefoxProfile = FirefoxProfile()
 
         ## Disable images
@@ -189,17 +189,17 @@ def linkedinsearch():
         driver.find_element_by_id("password").send_keys('amway2775035')
         driver.find_element_by_xpath("/html/body/div/main/div/form/div[3]/button").click()
         #, 'Manager', 'Web Developer', 'React Developer','Java Developer', 'IOS Developer'
-  
+
         tmpd={}
         d = pd.DataFrame(columns=['name','linkedin','skills'])
-       
+
         driver.get('https://www.linkedin.com/search/results/people/?keywords='+keyword+'&origin=SUGGESTION')
         #driver.find_element_by_xpath("/html/body/header/div/form/div/div/div/div/div[1]/div/input").send_keys(i+Keys.ENTER)
         content=driver.find_element_by_class_name('blended-srp-results-js')
         source_code = content.get_attribute("innerHTML")
         soup = BeautifulSoup(source_code, "html.parser")
 
-        
+
 
         data = soup.findAll('a',{'class':'search-result__result-link'})
         count=0
@@ -229,7 +229,7 @@ def linkedinsearch():
 
             main=[]
             main = content.get_attribute("innerHTML")
-          
+
 
         a = pd.DataFrame((d['skills'].fillna("Python DataAnalysis"),d['name'],d['linkedin']))
         d = d.reset_index(drop=True)
@@ -240,7 +240,7 @@ def linkedinsearch():
         skills.insert(0,'Name',a['name'])
         skills.insert(1,'Linkedin',a['linkedin'])
         linkdata=d.values.tolist()
-        return render_template("index.html", linkedinlist=linkdata)
+        return render_template("l_search.html", l=linkdata)
 
 @app.route('/gitsearch', methods=['GET', 'POST'])
 def gitsearch():
@@ -259,13 +259,13 @@ def gitsearch():
             soup = BeautifulSoup(html, 'html.parser')
             contribution=soup.find('div',attrs={'class':'js-yearly-contributions'}).h2.text.replace('contributions\n        in the last year','')
             follwers =requests.get('https://api.github.com/users/'+username[1:], auth=('krishshah99615', 'krish99615')).json()
-            
+
             followers=follwers['followers']
             email=follwers['email']
             bio=follwers['bio']
             pub_rep=follwers['public_repos']
             l.append([name,contribution,followers,email,bio,pub_rep])
-        return render_template('g_search.html',l=l)  
+        return render_template('g_search.html',l=l)
 
 if __name__ == '__main__':
     app.run(host=host, port=port, debug=True)
