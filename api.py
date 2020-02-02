@@ -36,6 +36,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
+from os import listdir
+from os.path import isfile, join
 
 port = 5000
 #host = '142.93.209.128'
@@ -71,6 +73,8 @@ def index():
 
 @app.route('/upload_single', methods=['GET', 'POST'])
 def upload_doc():
+    client = app.data.driver.db.client
+    db = client['hackit']
     if request.method == 'POST':
         # check if the post request has the file part
         file = request.files['resume']
@@ -80,16 +84,20 @@ def upload_doc():
         print(file.filename)
         if file:
             print('andar hu')
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            print('.\n'*50, filename)
-            client = app.data.driver.db.client
-
+            # filename = secure_filename(file.filename)
+            file.save(file.filename)
+            # file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            data = ResumeParser(file.filename).get_extracted_data()
+            data["f_loc"] = file.filename 
+            #
+            db.resume.insert_one(data)
             return redirect('/index')
 
 
 @app.route('/upload_zip', methods=['GET', 'POST'])
 def upload_zip():
+    client = app.data.driver.db.client
+    db = client['hackit']
     if request.method == 'POST':
         # check if the post request has the file part
         file = request.files['resume']
@@ -99,13 +107,20 @@ def upload_zip():
         print(file.filename)
         if file:
             print('andar hu')
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            print('.\n'*50, filename)
-            client = app.data.driver.db.client
-
+            # filename = secure_filename(file.filename)
+            # file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            # print('.\n'*50, filename)
+            with zipfile.ZipFile(file.filename, 'r') as zip_ref:
+                zip_ref.extractall('zip/')
+            onlyfiles = [f for f in listdir('zip/') if isfile(join('zip/', f))]
+            data = []
+            for i in onlyfiles:
+                datai = pyresparser.ResumeParser('zip/'+i).get_extracted_data()
+                datai["f_loc"] = i
+                data.append(datai)
+            db.resume.insert_many(data)
+            os.rmdir('zip')
             return redirect('/index')
-
 
 def scrap(s, linked):
     soup = BeautifulSoup(s, "html.parser")
@@ -217,7 +232,7 @@ def linkedinsearch():
         skills.insert(1,'Linkedin',a['linkedin'])
         linkdata=d.values.tolist()
         return render_template("index.html", linkedinlist=linkdata)
-        
+
 @app.route('/gitsearch', methods=['GET', 'POST'])
 def gitsearch():
     if request.method=='POST':
