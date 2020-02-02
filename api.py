@@ -7,6 +7,7 @@ from email.mime.text import MIMEText
 from werkzeug import secure_filename
 from bson import regex
 
+import zipfile
 import json
 import pathlib
 import hashlib
@@ -102,11 +103,11 @@ def upload_zip():
         print(file.filename)
         if file:
             print('andar hu')
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            print('.\n'*50, filename)
-            client = app.data.driver.db.client
-
+            # filename = secure_filename(file.filename)
+            # file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            # print('.\n'*50, filename)
+            with zipfile.ZipFile(file.filename, 'r') as zip_ref:
+                zip_ref.extractall('zip/')
             return redirect('/index')
 
 
