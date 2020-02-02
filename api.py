@@ -85,8 +85,11 @@ def index():
 
 @app.route('/recommendation',methods=['GET','POST'])
 def recommendation():
-    find_db()
-    return render_template("recommendation.html")
+    if request.method == 'POST':
+
+        l=find_db(str(POST['s']))
+
+        return render_template("recommendation.html",l=l)
 
 
 @app.route('/upload_single', methods=['GET', 'POST'])

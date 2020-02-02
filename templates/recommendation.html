@@ -24,7 +24,7 @@
 <body class="container-fluid" style="background-color: #f8f8fa;">
     <h1>Search result for ''</h1>
     <div class="row">
-
+{% for a in l %}
         <a href="">
             <div class="col-md-3 p-4">
                 <div class="row border rounded m-4 bg-white shadow shadow-sm">
@@ -32,11 +32,11 @@
                         <img src="{{ url_for('static', filename='pdf.svg') }}" style="height: 80px; " alt="">
                     </div>
                     <div class="col-md-10 m-auto text-center">
-                        name <br><span class="text-muted">ramsuthar305@gmail.com</span>
+                        {{a.0}}<br><span class="text-muted">{{a.1}}</span>
                     </div>
                 </div>
         </a>
-
+{% endfor %}
 
     </div>
 
