@@ -13,25 +13,33 @@
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <script src="https://kit.fontawesome.com/166175f28d.js" crossorigin="anonymous"></script>
+    <style>
+        .card {
+            border-radius: 20px;
+        }
+    </style>
 </head>
 
 <body>
     <div class="container text-center mt-5">
-        <div class="row " style="display: flex;justify-content: center;">
+        <div class="row ">
             <h1>Git Hub </h1>
             <i class="fab fa-github fa-3x"></i>
             <i class="fas fa-search fa-3x ml-3"></i>
         </div>
-        <div class="container">
+        <div class="row mt-5 ml-5 mb-5" style="display: flex;justify-content: center;">
             {% for a in l %}
-            <div class="card" style="width: 18rem;">
+            <div class="card ml-3 mr-3 mb-3 " style="width: 18rem;">
                 <div class="card-header">
                     {{a.0}}
                 </div>
                 <ul class="list-group list-group-flush" style="display: flex;justify-content:center;">
-                    <li class="list-group-item">a.1</li>
-                    <li class="list-group-item">a.2</li>
-                    <li class="list-group-item">a.3</li>
+                    <li class="list-group-item"><span class="font-weight-bold">Contribution : </span>{{a.1}}</li>
+                    <li class="list-group-item"><span class="font-weight-bold">Followers : </span>{{a.2}}</li>
+                    <li class="list-group-item"><span class="font-weight-bold">Email : </span>{{a.3}}</li>
+                    <li class="list-group-item" style="height: 150px;"><span class="font-weight-bold">Bio :
+                        </span>{{a.4}}</li>
+                    <li class="list-group-item"><span class="font-weight-bold">Public Repo : </span>{{a.5}}</li>
                 </ul>
             </div>
             {% endfor %}}
