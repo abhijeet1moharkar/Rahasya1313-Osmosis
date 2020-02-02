@@ -21,24 +21,25 @@
     </style>
 </head>
 
-<body class="container-fluid" style="background-color: #f8f8fa;">
-    <h1>Search result for ''</h1>
-    <div class="row">
-{% for a in l %}
-        <a href="">
-            <div class="col-md-3 p-4">
+<body class="container-fluid m-auto" style="background-color: #f8f8fa;">
+    <h1>Search result for '{{l.search_text}}'</h1>
+    <div class="row m-auto">
+        {% for i in l.result %}
+        <a href="http://0.0.0.0:5000/resume/{{i.f_loc}}" class="col-md-3 m-auto">
+            <div class=" p-4">
                 <div class="row border rounded m-4 bg-white shadow shadow-sm">
                     <div class="col-md-2 p-1">
                         <img src="{{ url_for('static', filename='pdf.svg') }}" style="height: 80px; " alt="">
                     </div>
                     <div class="col-md-10 m-auto text-center">
-                        {{a.0}}<br><span class="text-muted">{{a.1}}</span>
+                        {{i.name}}<br><span class="text-muted">{{i.email}}</span>
                     </div>
                 </div>
+            </div>
         </a>
-{% endfor %}
+        {% endfor %}
 
-    </div>
+
 
 
     </div>

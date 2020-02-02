@@ -73,8 +73,11 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 def find_db(search_text):
     client = app.data.driver.db.client
     db = client['hackit']
+    d={}
     d["search_text"] = search_text
-    d["result"] = db.resume.find({"$text": {"$search": search_text}},{"_id":0,"name":1,"email":1,"f_loc":1})
+    d["result"] = list(db.resume.find({"skills": {"$regex": search_text,"$options" : "i"}}))
+    
+    print(d['result'])
     return d
 
 
@@ -87,10 +90,14 @@ def index():
 def recommendation():
     if request.method == 'POST':
 
-        l=find_db(str(POST['s']))
-
+        l=request.form['s']
+        l=find_db(l)
         return render_template("recommendation.html",l=l)
 
+@app.route('/resume/<path:path>', methods=['GET', 'POST'])
+def image(path):
+    filename = (path)
+    return send_file(filename)
 
 @app.route('/upload_single', methods=['GET', 'POST'])
 def upload_doc():
