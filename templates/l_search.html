@@ -31,15 +31,12 @@
             {% for a in l %}
             <div class="card ml-3 mr-3 mb-3 " style="width: 18rem;">
                 <div class="card-header">
-                    {{a.0}}
+                    {{a.1}}
                 </div>
                 <ul class="list-group list-group-flush" style="display: flex;justify-content:center;">
-                    <li class="list-group-item"><span class="font-weight-bold">Contribution : </span>{{a.1}}</li>
-                    <li class="list-group-item"><span class="font-weight-bold">Followers : </span>{{a.2}}</li>
-                    <li class="list-group-item"><span class="font-weight-bold">Email : </span>{{a.3}}</li>
-                    <li class="list-group-item" style="height: 150px;"><span class="font-weight-bold">Bio :
-                        </span>{{a.4}}</li>
-                    <li class="list-group-item"><span class="font-weight-bold">Public Repo : </span>{{a.5}}</li>
+                    <li class="list-group-item"><span class="font-weight-bold">skills : </span>{{a.0}}</li>
+
+                    <li class="list-group-item"><span class="font-weight-bold">id : </span>{{a.2}}</li>
                 </ul>
             </div>
             {% endfor %}}
