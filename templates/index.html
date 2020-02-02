@@ -220,7 +220,7 @@
                             </p>
                             <form action="upload_single" method="post" enctype="multipart/form-data">
                                 Select image to upload:
-                                <input type="file" name="fileToUpload" id="fileToUpload">
+                                <input type="file"  name="resume" id="fileToUpload">
                                 <input type="submit" value="Upload Image" name="submit">
                             </form>
                         </div>
@@ -237,7 +237,11 @@
                             <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Id,
                                 repellendus
                             </p>
-                            <a href="#" class="btn btn-outline-success">Upload</a>
+                            <form action="upload_zip" method="post" enctype="multipart/form-data">
+                                Select image to upload:
+                                <input type="file" accept=".zip,.rar,.7zip" name="resume" id="fileToUpload">
+                                <input type="submit" value="Upload Image" name="submit">
+                            </form>
                         </div>
                     </div>
 

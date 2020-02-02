@@ -45,6 +45,41 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 def index():
     return render_template("index.html")
 
+@app.route('/upload_single', methods=['GET', 'POST'])
+def upload_doc():
+    if request.method == 'POST':
+        # check if the post request has the file part
+        file = request.files['resume']
+        # if user does not select file, browser also
+        # submit a empty part without filename
+        print('Entered')
+        print(file.filename)
+        if file:
+            print('andar hu')
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            print('.\n'*50, filename)
+            client = app.data.driver.db.client
+            
+            return redirect('/index')
+
+@app.route('/upload_zip', methods=['GET', 'POST'])
+def upload_zip():
+    if request.method == 'POST':
+        # check if the post request has the file part
+        file = request.files['resume']
+        # if user does not select file, browser also
+        # submit a empty part without filename
+        print('Entered')
+        print(file.filename)
+        if file:
+            print('andar hu')
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            print('.\n'*50, filename)
+            client = app.data.driver.db.client
+            
+            return redirect('/index')
 	
 if __name__ == '__main__':
     app.run(host=host, port=port, debug=True)
