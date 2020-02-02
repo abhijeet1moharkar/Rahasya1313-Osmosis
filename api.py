@@ -82,6 +82,10 @@ def find_db(search_text):
 def index():
     return render_template("index.html")
 
+@app.route('/recommendation')
+def recommendation():
+    return render_template("recommendation.html")
+
 
 @app.route('/upload_single', methods=['GET', 'POST'])
 def upload_doc():
