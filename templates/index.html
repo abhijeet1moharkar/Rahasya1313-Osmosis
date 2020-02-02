@@ -115,6 +115,18 @@
 </head>
 
 <body class="container-fluid" style="font-family: 'Montserrat', sans-serif; color: #4b4b4b;">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    <div>
+      {% if messages %}
+        {% for category, message in messages %}
+           <div class="alert alert-{{ category }} alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+              {{message}}
+            </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+    {% endwith %}
     <div class="m-auto text-center pt-4 mt-4">
         <img src="{{ url_for('static', filename='funnel.svg') }}" style="height: 200px; padding-top: 4%;" alt="">
     </div>

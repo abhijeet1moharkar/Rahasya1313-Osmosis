@@ -7,6 +7,8 @@ from email.mime.text import MIMEText
 from werkzeug import secure_filename
 from bson import regex
 
+import flask
+from flask import flash
 import json
 import pathlib
 import hashlib
@@ -141,7 +143,14 @@ def upload_doc():
             data = ResumeParser(file.filename).get_extracted_data()
             data["f_loc"] = file.filename
             #
+            # data["skills"]
+            flash('File uploaded successfully', 'success')
             db.resume.insert_one(data)
+            a = flask.Markup('<h2>')+data["name"]+flask.Markup('</h2><br/><div class="row">')
+            for i in data['skills']:
+                a+=flask.Markup('<div class="col-md-1">')+i+', '+flask.Markup('</div>')
+            flash(a,'warning')
+            # flash(data["name"]+flask.Markup('<br /><div class="row">')),'warning')
             return redirect('/index')
 
 
