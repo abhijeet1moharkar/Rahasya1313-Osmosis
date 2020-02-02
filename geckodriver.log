@@ -13,3 +13,68 @@ JavaScript warning: https://static-exp1.licdn.com/sc/h/br/9sffows66bc78wcyu5rk58
 JavaScript warning: https://static-exp1.licdn.com/sc/h/br/9sffows66bc78wcyu5rk58gkm, line 3742: unreachable code after return statement
 JavaScript warning: https://static-exp1.licdn.com/sc/h/br/9sffows66bc78wcyu5rk58gkm, line 3742: unreachable code after return statement
 1580612203836	Marionette	INFO	Stopped listening on port 44425
+1580613803871	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.z919SGpkyl01"
+1580613804369	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1580613804406	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1580613804406	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1580613804406	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1580613804406	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1580613806502	Marionette	INFO	Listening on port 39163
+1580613806581	Marionette	WARN	TLS certificate errors will be ignored for this session
+1580613809096	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+bail@chrome://marionette/content/sync.js:237:64
+JavaScript warning: https://static-exp1.licdn.com/sc/h/br/9sffows66bc78wcyu5rk58gkm, line 3742: unreachable code after return statement
+JavaScript warning: https://static-exp1.licdn.com/sc/h/br/9sffows66bc78wcyu5rk58gkm, line 3742: unreachable code after return statement
+JavaScript warning: https://static-exp1.licdn.com/sc/h/br/9sffows66bc78wcyu5rk58gkm, line 3742: unreachable code after return statement
+JavaScript warning: https://static-exp1.licdn.com/sc/h/br/9sffows66bc78wcyu5rk58gkm, line 3742: unreachable code after return statement
+1580613977837	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.efKkyIAZGxE9"
+1580613978338	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1580613978375	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1580613978375	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1580613978375	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1580613978375	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1580613980358	Marionette	INFO	Listening on port 33783
+1580613980445	Marionette	WARN	TLS certificate errors will be ignored for this session
+1580613982412	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+bail@chrome://marionette/content/sync.js:237:64
+JavaScript warning: https://static-exp1.licdn.com/sc/h/br/9sffows66bc78wcyu5rk58gkm, line 3742: unreachable code after return statement
+JavaScript error: , line 0: uncaught exception: AbortError: Aborted
+JavaScript error: , line 0: uncaught exception: AbortError: Aborted
+JavaScript error: , line 0: uncaught exception: AbortError: Aborted
+JavaScript warning: https://static-exp1.licdn.com/sc/h/br/9sffows66bc78wcyu5rk58gkm, line 3742: unreachable code after return statement
+JavaScript warning: https://static-exp1.licdn.com/sc/h/br/9sffows66bc78wcyu5rk58gkm, line 3742: unreachable code after return statement
+JavaScript warning: https://static-exp1.licdn.com/sc/h/br/9sffows66bc78wcyu5rk58gkm, line 3742: unreachable code after return statement
+1580614214995	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.su8pB3A2mDWC"
+1580614215579	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1580614215617	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1580614215617	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1580614215617	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1580614215617	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1580614217781	Marionette	INFO	Listening on port 46631
+1580614217809	Marionette	WARN	TLS certificate errors will be ignored for this session
+1580614220659	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+bail@chrome://marionette/content/sync.js:237:64
+JavaScript warning: https://static-exp1.licdn.com/sc/h/br/9sffows66bc78wcyu5rk58gkm, line 3742: unreachable code after return statement
+JavaScript warning: https://static-exp1.licdn.com/sc/h/br/9sffows66bc78wcyu5rk58gkm, line 3742: unreachable code after return statement
+JavaScript warning: https://static-exp1.licdn.com/sc/h/br/9sffows66bc78wcyu5rk58gkm, line 3742: unreachable code after return statement
+JavaScript warning: https://static-exp1.licdn.com/sc/h/br/9sffows66bc78wcyu5rk58gkm, line 3742: unreachable code after return statement
+1580614585531	Marionette	INFO	Stopped listening on port 46631
+1580614587189	Marionette	INFO	Stopped listening on port 33783
+1580614588915	Marionette	INFO	Stopped listening on port 39163
+1580614595825	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile.7HvWdo8QOHnG"
+1580614596376	addons.webextension.doh-rollout@mozilla.org	WARN	Loading extension 'doh-rollout@mozilla.org': Reading manifest: Invalid extension permission: networkStatus
+1580614596412	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1580614596412	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1580614596412	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1580614596412	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1580614598319	Marionette	INFO	Listening on port 41149
+1580614598352	Marionette	WARN	TLS certificate errors will be ignored for this session
+1580614600881	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+bail@chrome://marionette/content/sync.js:237:64
+JavaScript warning: https://static-exp1.licdn.com/sc/h/br/9sffows66bc78wcyu5rk58gkm, line 3742: unreachable code after return statement
+JavaScript warning: https://static-exp1.licdn.com/sc/h/br/9sffows66bc78wcyu5rk58gkm, line 3742: unreachable code after return statement
+JavaScript warning: https://static-exp1.licdn.com/sc/h/br/9sffows66bc78wcyu5rk58gkm, line 3742: unreachable code after return statement
+JavaScript warning: https://static-exp1.licdn.com/sc/h/br/9sffows66bc78wcyu5rk58gkm, line 3742: unreachable code after return statement
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.

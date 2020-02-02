@@ -179,10 +179,10 @@ def linkedinsearch():
 
         data = soup.findAll('a',{'class':'search-result__result-link'})
         count=0
-        for j in data :
-            if count%2==0:
+        for j in range(len(data)) :
+            if j%2==0:
                 pass
-            driver.get("https://www.linkedin.com"+str(j['href']))
+            driver.get("https://www.linkedin.com"+str(data[j]['href']))
             time.sleep(2)
             driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
             time.sleep(2)
@@ -197,25 +197,51 @@ def linkedinsearch():
             finally:
                 driver.execute_script("arguments[0].scrollIntoView();", element)
                 myElem = WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.CLASS_NAME, 'pv-profile-section__card-action-bar')))
-            
-
-        
-            
             #driver.find_element_by_class_name('pv-skill-categories-section').click()
             content=driver.find_element_by_class_name('core-rail')
             print(str(content))
-            tmp=scrap(content.get_attribute("innerHTML"),j['href'])
+            tmp=scrap(content.get_attribute("innerHTML"),data[j]['href'])
             d.loc[len(d)] = tmp
 
             main=[]
             main = content.get_attribute("innerHTML")
-            #print(main)
+          
+
+        a = pd.DataFrame((d['skills'].fillna("Python DataAnalysis"),d['name'],d['linkedin']))
+        d = d.reset_index(drop=True)
+        a = a.T
+
+        skills = pd.DataFrame(a['skills'].str.split(" ", n = -1, expand = True))
+
+        skills.insert(0,'Name',a['name'])
+        skills.insert(1,'Linkedin',a['linkedin'])
+        linkdata=d.values.tolist()
+        return render_template("index.html", linkedinlist=linkdata)
+        
+@app.route('/gitsearch', methods=['GET', 'POST'])
+def gitsearch():
+    if request.method=='POST':
+        l=[]
+        response = urllib.request.urlopen('https://github.com/search?q=language%3Ajavascript+location%3Aindia+repos%3A%3E100+followers%3A%3E%3D100')
+        html = response.read()
+        soup = BeautifulSoup(html, 'html.parser')
+        a=soup.find('div',attrs={'class':'user-list'})
+        b=a.findAll('div',attrs={'class':'user-list-item'})
+        for i in b:
+            name=i.find('a',attrs={'class':'mr-1'}).text
+            username=i.find('a',attrs={'class':'mr-1'})['href']
+            response = urllib.request.urlopen('https://github.com/'+username)
+            html=response.read()
+            soup = BeautifulSoup(html, 'html.parser')
+            contribution=soup.find('div',attrs={'class':'js-yearly-contributions'}).h2.text.replace('contributions\n        in the last year','')
+            follwers =requests.get('https://api.github.com/users/'+username[1:], auth=('krishshah99615', 'krish99615')).json()
             
-
-    #directory='C:\\Users\\atharva\\.spyder-py3\\'
-
-    d.to_csv('d.csv')#, delimiter=None, index_col=0)
-
+            followers=follwers['followers']
+            email=follwers['email']
+            bio=follwers['bio']
+            pub_rep=follwers['public_repos']
+            l.append([name,contribution,followers,email,bio,pub_rep])
+        return render_template('g_search.html',l=l)  
 
 if __name__ == '__main__':
     app.run(host=host, port=port, debug=True)
