@@ -120,10 +120,12 @@
     <div>
         <div class="wrap">
             <div class="search">
-                <input type="text" class="searchTerm" placeholder="What are you looking for?">
+              <form action="recommendation" method="POST">
+                <input type="text" name="s"class="searchTerm" placeholder="What are you looking for?">
                 <button type="submit" class="searchButton">
                     <i class="fa fa-search"></i>
                 </button>
+                </form>
             </div>
         </div>
     </div>

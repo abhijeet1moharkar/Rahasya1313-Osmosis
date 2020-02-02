@@ -80,10 +80,12 @@ def find_db(search_text):
 
 @app.route('/index')
 def index():
+
     return render_template("index.html")
 
-@app.route('/recommendation')
+@app.route('/recommendation',methods=['GET','POST'])
 def recommendation():
+    find_db()
     return render_template("recommendation.html")
 
 
