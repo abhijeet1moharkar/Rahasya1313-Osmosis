@@ -193,7 +193,11 @@
                         <i class="fab fa-linkedin fa-3x"></i>
                         <i class="fas fa-search fa-3x ml-3"></i>
                     </div>
-                    <input class="form-control" type="text" placeholder="Type here..." >
+                    <form action="linkedinsearch" method="POST">
+                        <input class="form-control" type="text" id="linkdin" name='searchkey' placeholder="Type here..." >
+                    <button type="submit" id="sublink" hidden></button>
+                    </form>
+                    
                 </div>
             </div>
 
@@ -275,6 +279,19 @@
 $('.gith').on('click', function () {
     $("#collapseExample").hide();
     $("#collapsegit").show();
+});
+// Get the input field
+var input = document.getElementById("linkdin");
+
+// Execute a function when the user releases a key on the keyboard
+input.addEventListener("keyup", function(event) {
+  // Number 13 is the "Enter" key on the keyboard
+  if (event.keyCode === 13) {
+    // Cancel the default action, if needed
+    event.preventDefault();
+    // Trigger the button element with a click
+    document.getElementById("sublink").click();
+  }
 });
     </script>
    
