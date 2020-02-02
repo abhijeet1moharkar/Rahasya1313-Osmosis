@@ -7,7 +7,6 @@ from email.mime.text import MIMEText
 from werkzeug import secure_filename
 from bson import regex
 
-import zipfile
 import json
 import pathlib
 import hashlib
@@ -63,8 +62,7 @@ app.config['MONGO_PASSWORD'] = '1313'
 
 UPLOAD_FOLDER = "./static/uploads/"
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-client = app.data.driver.db.client
-db = client['hackit']
+
 
 @app.route('/index')
 def index():
@@ -82,13 +80,11 @@ def upload_doc():
         print(file.filename)
         if file:
             print('andar hu')
-            # filename = secure_filename(file.filename)
-            file.save(file.filename)
-            # file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            data = ResumeParser(file.filename).get_extracted_data()
-            data["f_loc"] = file.filename 
-            #
-            db.resume.insert_one(data)
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            print('.\n'*50, filename)
+            client = app.data.driver.db.client
+
             return redirect('/index')
 
 
@@ -102,12 +98,12 @@ def upload_zip():
         print('Entered')
         print(file.filename)
         if file:
-            
-            # filename = secure_filename(file.filename)
-            # file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            # print('.\n'*50, filename)
-            with zipfile.ZipFile(file.filename, 'r') as zip_ref:
-                zip_ref.extractall('zip/')
+            print('andar hu')
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            print('.\n'*50, filename)
+            client = app.data.driver.db.client
+
             return redirect('/index')
 
 
@@ -221,7 +217,7 @@ def linkedinsearch():
         skills.insert(1,'Linkedin',a['linkedin'])
         linkdata=d.values.tolist()
         return render_template("index.html", linkedinlist=linkdata)
-
+        
 @app.route('/gitsearch', methods=['GET', 'POST'])
 def gitsearch():
     if request.method=='POST':
