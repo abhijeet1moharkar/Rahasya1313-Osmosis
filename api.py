@@ -36,8 +36,13 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
+
+from pyresparser import ResumeParser
 from os import listdir
 from os.path import isfile, join
+import zipfile
+
+
 
 port = 5000
 #host = '142.93.209.128'
@@ -107,20 +112,24 @@ def upload_zip():
         print(file.filename)
         if file:
             print('andar hu')
+            file.save(file.filename)
             # filename = secure_filename(file.filename)
             # file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             # print('.\n'*50, filename)
-            with zipfile.ZipFile(file.filename, 'r') as zip_ref:
-                zip_ref.extractall('zip/')
-            onlyfiles = [f for f in listdir('zip/') if isfile(join('zip/', f))]
             data = []
-            for i in onlyfiles:
-                datai = pyresparser.ResumeParser('zip/'+i).get_extracted_data()
-                datai["f_loc"] = i
-                data.append(datai)
+            with zipfile.ZipFile(file.filename, 'r') as zip_ref:
+                listOfFileNames = zip_ref.namelist()
+                # Iterate over the file names
+                for fileName in listOfFileNames:
+                    # Check filename endswith csv
+                    if fileName.endswith('.pdf'):
+                        # Extract a single file from zip
+                        zip_ref.extract(fileName, '')
+                        datai = ResumeParser(fileName).get_extracted_data()
+                        datai["f_loc"] = fileName
+                        data.append(datai)
             db.resume.insert_many(data)
-            os.rmdir('zip')
-            return redirect('/index')
+        return redirect('/index')
 
 def scrap(s, linked):
     soup = BeautifulSoup(s, "html.parser")

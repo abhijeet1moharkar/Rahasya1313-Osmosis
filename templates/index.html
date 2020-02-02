@@ -83,6 +83,7 @@
             color: white;
             background-color: #7F00FF;
         }
+
         .btn-outline-success:focus {
             border: 1px solid #7F00FF;
             color: white;
@@ -133,7 +134,7 @@
         </div>
     </div>
 
-    
+
     <div class="container-fluid  text-center"
         style="padding-right: 14%;padding-left: 14%;padding-top: 7%;padding-bottom: 10%;">
         <h2 class="text-center mt-2" style="font-size:40px"> Our Service <i class="fas fa-cubes"></i></h2>
@@ -180,7 +181,8 @@
                             <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Id,
                                 repellendus
                             </p>
-                            <a data-toggle="collapse" href="#collapsegit" class="btn btn-outline-success gith">Search</a>
+                            <a data-toggle="collapse" href="#collapsegit"
+                                class="btn btn-outline-success gith">Search</a>
                         </div>
                     </div>
 
@@ -194,10 +196,11 @@
                         <i class="fas fa-search fa-3x ml-3"></i>
                     </div>
                     <form action="linkedinsearch" method="POST">
-                        <input class="form-control" type="text" id="linkdin" name='searchkey' placeholder="Type here..." >
-                    <button type="submit" id="sublink" hidden></button>
+                        <input class="form-control" type="text" id="linkdin" name='searchkey'
+                            placeholder="Type here...">
+                        <button type="submit" id="sublink" hidden></button>
                     </form>
-                    
+
                 </div>
             </div>
 
@@ -208,7 +211,10 @@
                         <i class="fab fa-github fa-3x"></i>
                         <i class="fas fa-search fa-3x ml-3"></i>
                     </div>
-                    <input class="form-control" type="text" placeholder="Type here..." >
+                    <form action="gitsearch" method="POST">
+                        <input class="form-control" type="text" placeholder="Type here..." id="git" name='searchkey1'>
+                        <button type="submit" id="sublink1" hidden></button>
+                    </form>
                 </div>
             </div>
             <div class="mt-5 row" style="display: flex;justify-content: center;">
@@ -224,7 +230,7 @@
                             </p>
                             <form action="upload_single" method="post" enctype="multipart/form-data">
                                 Select image to upload:
-                                <input type="file"  name="resume" id="fileToUpload">
+                                <input type="file" name="resume" id="fileToUpload">
                                 <input type="submit" value="Upload Image" name="submit">
                             </form>
                         </div>
@@ -244,7 +250,7 @@
                             <form action="upload_zip" method="post" enctype="multipart/form-data">
                                 Select image to upload:
                                 <input type="file" accept=".zip,.rar,.7zip" name="resume" id="fileToUpload">
-                                <input type="submit" value="Upload Image" name="submit">
+                                <input type="submit" id='git' value="Upload Image" name="submit">
                             </form>
                         </div>
                     </div>
@@ -273,28 +279,39 @@
     </script>
     <script>
         $('.lkd').on('click', function () {
-    $("#collapsegit").hide();
-    $("#collapseExample").show();
-});
-$('.gith').on('click', function () {
-    $("#collapseExample").hide();
-    $("#collapsegit").show();
-});
-// Get the input field
-var input = document.getElementById("linkdin");
+            $("#collapsegit").hide();
+            $("#collapseExample").show();
+        });
+        $('.gith').on('click', function () {
+            $("#collapseExample").hide();
+            $("#collapsegit").show();
+        });
+        // Get the input field
+        var input = document.getElementById("linkdin");
 
-// Execute a function when the user releases a key on the keyboard
-input.addEventListener("keyup", function(event) {
-  // Number 13 is the "Enter" key on the keyboard
-  if (event.keyCode === 13) {
-    // Cancel the default action, if needed
-    event.preventDefault();
-    // Trigger the button element with a click
-    document.getElementById("sublink").click();
-  }
-});
+        // Execute a function when the user releases a key on the keyboard
+        input.addEventListener("keyup", function (event) {
+            // Number 13 is the "Enter" key on the keyboard
+            if (event.keyCode === 13) {
+                // Cancel the default action, if needed
+                event.preventDefault();
+                // Trigger the button element with a click
+                document.getElementById("sublink").click();
+            }
+        });
+
+        var input2 = document.getElementById("git");
+        input.addEventListener("keyup", function (event) {
+            // Number 13 is the "Enter" key on the keyboard
+            if (event.keyCode === 13) {
+                // Cancel the default action, if needed
+                event.preventDefault();
+                // Trigger the button element with a click
+                document.getElementById("sublink1").click();
+            }
+        });
     </script>
-   
+
 </body>
 
 </html>
